@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('home') }}" class="brand-link">
+    <a href="{{ route('totoSite.index') }}" class="brand-link">
       <img src="backend/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><b>{{ config('app.name') }}</b><small style="font-size: 0.6em;" class="brand-text"> Version 1.1.13</small></span>
+      <span class="brand-text font-weight-light"><b>{{ config('app.name') }}</b><small style="font-size: 0.6em;" class="brand-text"> Version 0.01</small></span>
     </a>
     
     <!-- Sidebar -->
@@ -13,7 +13,7 @@
           <img src="../public/images/{{ Auth::user()->image }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a> 
+          <a href="{{ route('user.show',Auth::user()->id) }}" class="d-block">{{ Auth::user()->name }}</a> 
           <span class="float-right text-info text-sm">logged in {{ Auth::user()->last_login_time }}</span>  
         </div>
       </div>
@@ -25,36 +25,34 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link {{ request()->is('home') ? 'active' : ' '}}" id="link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('date.index') }}" class="nav-link {{ request()->is('date')  ? 'active' : ' '}}" id="link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Date-Time Listing</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('user.index') }}" class="nav-link {{ request()->is('user')  ? 'active' : ' '}}" id="link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User Listing</p>
-                </a>
-              </li>
-            </ul>
+          <li class="nav-item">
+              <a href="{{ route('totoSite.index') }}" class="nav-link {{ request()->is('totoSite')  ? 'active' : ' '}}" id="link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Toto Site</p>
+              </a>
           </li>
-           
+          <li class="nav-item">
+            <a href="{{ route('drawdate.index') }}" class="nav-link {{ request()->is('drawdate')  ? 'active' : ' '}}" id="link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Special Drow Date</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('result_api.index') }}" class="nav-link {{ request()->is('result_api')  ? 'active' : ' '}}" id="link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Result Api </p>
+            </a>
+          </li>
+         
+            <li class="nav-item">
+              <a href="{{ route('user.index') }}" class="nav-link {{ request()->is('user')  ? 'active' : ' '}}" id="link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>User </p>
+              </a>
+            </li>
+          
+            
 
         </ul>
       </nav>

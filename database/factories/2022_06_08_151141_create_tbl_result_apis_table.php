@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('toto_sites', function (Blueprint $table) {
+        Schema::create('tbl_result_apis', function (Blueprint $table) {
             $table->id();
-            $table->string('siteName',100);
-            $table->string('flag',3);
-            $table->string('country',50);
-            $table->string('siteImage');
-            $table->string('color',50);
+            $table->string('api_url');
+            $table->string('toto_site');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('toto_sites');
+        Schema::dropIfExists('tbl_result_apis');
     }
 };

@@ -7,23 +7,23 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1>Edit User <span style="font-size:18px;color:#869099">P000004</span></h1>
+            <h1>Edit User <span style="font-size:18px;color:#869099">P000009</span></h1>
           </div>
           
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-left">
-                  {{ Breadcrumbs::render() }}
-                </ol>
+              <ol class="breadcrumb float-sm-left">
+                {{ Breadcrumbs::render() }}
+              </ol>
               </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    <form action="{{ route('employee.update',$employee->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('totoSite.update',$totoSite->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-@include('backend.employee.fields')
+@include('backend.totoSite.fields')
 
 
     </form>

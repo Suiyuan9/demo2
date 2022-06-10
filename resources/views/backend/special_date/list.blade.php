@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th  class="col-sm-1">No</th>
-                <th class="col-sm-1">Date</th>
+                <th class="col-sm-1">Draw Date</th>
                 <th class="col-1">Action</th>
             </tr>
         </thead>
@@ -14,9 +14,9 @@
             @foreach ($dates as $date)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $date->dateTime }}</td>
+                <td>{{ $date->drawDate }}</td>
                 <td style="float:right;border:none">
-                    <form action="{{ route('date.destroy',$date->id) }}" method="POST" style="margin: 0%">
+                    <form action="{{ route('drawdate.destroy',$date->id) }}" method="POST" style="margin: 0%">
    
        
                         @csrf

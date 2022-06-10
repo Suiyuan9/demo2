@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1>Show User <span style="font-size:18px;color:#869099">P000005</span></h1>
+            <h1>Show User <span style="font-size:18px;color:#869099">P0000010</span></h1>
           </div>
           
         </div>
@@ -45,7 +45,7 @@
                 <div class="card-header">
                   
                   
-                  <h3 class="card-title">Show User :{{ $user->id }}</h3>
+                  <h3 class="card-title">Show User :{{ $totoSite->id }}</h3>
                  
                 </div>
                 <!-- /.card-header -->
@@ -55,39 +55,34 @@
              
                     <div class="form-group">
                       <div class="row  justify-content-between" > 
-                        <div class="col-md-4">
-                        <label >User Name<span>*</span></label>
+                        <div class="col-md-8">
+                        <label >Site Name<span>*</span></label>
                         </div>
                         <div class="col-md-4">
-                          <label for="exampleInputPassword1">Password</label>
+                          <label>Flag</label>
                       </div>
                       
-                      <div class="col-md-4">
-                        <label for="password-confirm">Confirm Password</label>
-                    </div>
+                     
                       </div>
                     
                     
                       <!--input-->
                       
-                        <div class="row  mb-3 justify-content-between" >
+                        <div class="row  mb-2 justify-content-between" >
                         
-                          <div class="col-md-4">
+                          <div class="col-md-8">
                           
                             
-                             <input type="name" name="name" class="form-control" id="exampleInputName" value="{{ $user->name }}"   disabled="disabled" style="background-color: white;">
+                             <input  name="siteName" class="form-control" id="exampleInputName" value="{{ $totoSite->siteName }}"   disabled="disabled" style="background-color: white;">
                              
                            </div>
                            
                            <div class="col-md-4">
-                             <input type="password" name="password" class="form-control "  id="exampleInputPassword1"  value="{{ $user->password }}" style="background-color: white;"  disabled="disabled">
+                             <input  name="flag" class="form-control "    value="{{ $totoSite->flag }}" style="background-color: white;"  disabled="disabled">
                             
                          </div>
                          
-                         <div class="col-md-4">
-                           <input id="password-confirm" type="password" class="form-control" name="password_confirmation"   style="background-color: white;" value="{{ $user->password }}" disabled="disabled">
-                          
-                       </div>
+                       
                              
     
                             
@@ -98,6 +93,45 @@
                       </div>
                     
                     <!--end input-->
+
+                    <div class="form-group">
+                      <div class="row  justify-content-between" > 
+                        <div class="col-md-6">
+                        <label >Country<span>*</span></label>
+                        </div>
+                        <div class="col-md-6">
+                          <label>Color</label>
+                      </div>
+                      
+                     
+                      </div>
+                    
+                    
+                      <!--input-->
+                      
+                        <div class="row  mb-2 justify-content-between" >
+                        
+                          <div class="col-md-6">
+                          
+                            
+                             <input  name="country" class="form-control"  value="{{ $totoSite->country }}"   disabled="disabled" style="background-color: white;">
+                             
+                           </div>
+                           
+                           <div class="col-md-6">
+                             <input  name="color" class="form-control "    value="{{ $totoSite->color }}" style="background-color: white;"  disabled="disabled">
+                            
+                         </div>
+                         
+                       
+                             
+    
+                            
+                           
+                            
+                      
+                        </div>
+                      </div>
     
     
                    
@@ -116,7 +150,7 @@
                         
                           <div class="row " >
                             <div class="col-md-12">
-                              <img src="../public/images/{{ ($user->image) }}" height="45px" width="50px"></td>
+                              <img src="../public/images/{{ ($totoSite->siteImage) }}" height="45px" width="50px"></td>
                             </div>
                            </div>
                         </div>
@@ -132,7 +166,11 @@
                      <div class="row " >
                       <div class="col-md-11">
                       </div>
-                      <a class="btn  btn-default btn-lg " style="margin-right:1%"   href="{{ route('user.index') }}">Back</a>       
+                      @if(url()->previous()!='http://127.0.0.1:8000/totoSite')
+                    <a class="btn  btn-info btn-lg " style="float:right;"   href="{{ url()->previous() }}">Back</a>
+                    @else
+                    <a class="btn  btn-info btn-lg " style="float:right;"   href="{{ route('totoSite.index') }}">Back</a>
+                    @endif
                     
                      </div>
                   </div>

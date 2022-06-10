@@ -24,6 +24,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function index(Request $request)
     {
@@ -85,8 +89,8 @@ class UserController extends Controller
         $newEmployee->save();
 
 
-        alert()->html("employee created successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
-        <a href="/user/create"  class="btn btn-primary"> stay</a>',"success");
+        alert()->html("user is created successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
+        <a href="/user/create"  class="btn btn-primary"> Stay</a>',"success");
         return back();
                       
     }
@@ -152,8 +156,8 @@ class UserController extends Controller
                 'image'=>$imageName,
                 'password' => Hash::make($request['password']),
             ]);
-            alert()->html("admin edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
-            <a href=""  class="btn btn-primary"> stay</a>',"success");
+            alert()->html("user is edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
+            <a href=""  class="btn btn-primary"> Stay</a>',"success");
           
             return back();
         }else{
@@ -162,8 +166,8 @@ class UserController extends Controller
                 'password' => Hash::make($request['password']),
             ]);
        
-        alert()->html("admin edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
-        <a href=""  class="btn btn-primary"> stay</a>',"success");
+        alert()->html("user is edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
+        <a href=""  class="btn btn-primary"> Stay</a>',"success");
       
         return back();
     }
@@ -189,16 +193,16 @@ class UserController extends Controller
                         'image'=>$imageName,
                     ]);
                     
-                    alert()->html("admin edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
-                    <a href=""  class="btn btn-primary"> stay</a>',"success");
+                    alert()->html("user is edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
+                    <a href=""  class="btn btn-primary"> Stay</a>',"success");
                   
                     return back();
                 }else{
                 return 'false';
                 $user->update($request->except('password'));
                
-                alert()->html("admin edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
-                <a href=""  class="btn btn-primary"> stay</a>',"success");
+                alert()->html("user is edited successfully.",'<a href="/user"  class="btn btn-primary"> Back </a> 
+                <a href=""  class="btn btn-primary"> Stay</a>',"success");
               
                 return back();
             }

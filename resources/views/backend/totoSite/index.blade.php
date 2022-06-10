@@ -8,11 +8,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">User  <span style="font-size:18px;color:#869099">P000002</span></h1>
+            <h1 class="m-0">Toto Site <span style="font-size:18px;color:#869099">P000007</span></h1>
           </div><!-- /.col -->
           <div class="col-sm-7">
             <ol class="breadcrumb float-sm-left">
-            
+           
               {{ Breadcrumbs::render() }}
             </ol>
             
@@ -29,7 +29,7 @@
           <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
         </div>
         <div class="col-sm-8">
-          <h1 class="pull-right"><a class="btn btn-primary float-sm-right" id="btn-submit" style="" href="{{ route('user.create') }}">Add New Record</a></h1>
+          <h1 class="pull-right"><a class="btn btn-primary float-sm-right" id="btn-submit" style="" href="{{ route('totoSite.create') }}">Add New Toto Site</a></h1>
           </div>
       </div>
         </form>
@@ -44,7 +44,7 @@
         <div class="row ">
           <div class="col-sm-12">
             <div class="card">
-            @include('backend.user.list')
+            @include('backend.totoSite.list')
           </div>
         </div>
       </div>

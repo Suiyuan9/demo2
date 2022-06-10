@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Date;
+use App\Models\tblSpecial;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class DateTimeController extends Controller
+class DrawDateController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $dates = Date::latest()->paginate(10);  
+        $dates = tblSpecial::latest()->paginate(10);  
         
-        return view('backend.date.index',compact('dates'))
+        return view('backend.special_date.index',compact('dates'))
         ->with('i', (request()->input('page', 1) - 1) * 10);
 
     }
@@ -43,7 +48,7 @@ class DateTimeController extends Controller
     public function store(Request $request)
     {
         $validator=Validator::make($request->all(),[
-            'dateTime' => 'required|date_format:Y-m-d|unique:dates|max:10',
+            'drawDate' => 'required|date_format:Y-m-d|unique:tbl_specials|max:10',
             
         ]);
         if ($validator->fails()) {
@@ -52,9 +57,10 @@ class DateTimeController extends Controller
             return back()->withErrors($validator)            
                          ->withInput();
          }
-         $date=new Date();
+         $date=new tblSpecial();
          $date->create($request->all());
-         return back();
+         return back()
+             ->with('success','draw date has been create successfully');
     }
 
     /**
@@ -99,7 +105,7 @@ class DateTimeController extends Controller
      */
     public function destroy($id)
     {
-        Date::find($id)->delete();
+        tblSpecial::find($id)->delete();
         return back()
         ->with('success','Record has been delete successfully');
     }

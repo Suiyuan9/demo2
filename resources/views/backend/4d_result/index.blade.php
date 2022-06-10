@@ -6,18 +6,19 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Date <span style="font-size:18px;color:#869099">P000005</span></h1>
+          <h1 class="m-0">4D Result <span style="font-size:18px;color:#869099">P0000015</span></h1>
         </div><!-- /.col -->
         <div class="col-sm-7">
           <ol class="breadcrumb float-sm-left">   
            <!--breadcrumb-->
+           
           </ol>
           
         </div><!-- /.col -->
         
       </div><!-- /.row -->
-      <form action="{{ route('date.store') }}" method="POST" >
-        @csrf
+      <form action="{{ route('result.index') }}" method="GET" >
+       @csrf
         <div class="form-group">
             <div class="row">
             <div class="col-md-6">
@@ -27,11 +28,11 @@
             <div class="row">
             <div class="col-md-6">
               <div class="input-group date"  id="reservationdate" data-target-input="nearest" >
-                  <input type="text" name="dateTime" class="form-control datetimepicker-input @error('dateTime') is-invalid @enderror" data-target="#reservationdate"/>
+                  <input type="text" name="dd" class="form-control datetimepicker-input @error('dd') is-invalid @enderror" value="{{ $date }}" data-target="#reservationdate"/>
                   <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                       <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                   </div>
-                  @error('dateTime')
+                  @error('dd')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
@@ -54,7 +55,7 @@
       <div class="row ">
         <div class="col-sm-12">
           <div class="card">
-          @include('backend.date.list')
+          @include('backend.4d_result.list')
         </div>
       </div>
     </div>
@@ -62,6 +63,7 @@
   </section>
 
   @include('backend.footerJS.create')
+  
 
   @include('sweetalert::alert')
 

@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dates', function (Blueprint $table) {
+        Schema::create('tbl_toto_sites', function (Blueprint $table) {
             $table->id();
-            $table->string('dateTime')->unique();
+            $table->string('siteName')->unique();
+            $table->string('flag',3);
+            $table->string('country');
+            $table->string('siteImage');
+            $table->string('color');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dates');
+        Schema::dropIfExists('tbl_toto_sites');
     }
 };

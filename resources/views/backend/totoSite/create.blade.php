@@ -16,25 +16,22 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1>Create User <span style="font-size:18px;color:#869099">P000003</span></h1>
+            <h1>Create User <span style="font-size:18px;color:#869099">P000008</span></h1>
           </div>
           
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-left">
-                  <!--<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('employee.index') }}">User Listing</a></li>
-                  <li class="breadcrumb-item active">Create User</li>-->
+                <ol class="breadcrumb float-sm-left">          
                   {{ Breadcrumbs::render() }}
                 </ol>
               </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    <form action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('totoSite.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-@include('backend.employee.fields')
+@include('backend.totoSite.fields')
 
 
     </form>

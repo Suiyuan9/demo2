@@ -220,6 +220,33 @@
     });
 </script>
 
+<script>
+  $('.btn-success').on('click',function(e){
+         e.preventDefault();
+       var form = $(this).parents('form');
+        Swal.fire({
+             title: 'Are you sure to submit it?',
+             text: "Make sure user information is correct it", 
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             cancelButtonText: `No`,
+             confirmButtonText: 'Yes, Submit it',
+             dangerMode:true,
+         }).then((result) => {
+             if (result.isConfirmed) {
+                  form.submit();
+          
+             }else{
+               Swal.fire('Cancelled','Make sure their are correct it','error');
+             }
+         });
+     });
+    
+ </script>
+
+
 <script type="text/javascript">
   
   document.querySelectorAll(".drop-zone__input").forEach(inputElement=>{
@@ -376,6 +403,33 @@
           
              }else{
                Swal.fire('Cancelled','Make sure their are correct it','error');
+             }
+         });
+     });
+    
+ </script>
+
+ <!--delete alert-->
+<script>
+  $('.btn-danger').on('click',function(e){
+         e.preventDefault();
+       var form = $(this).parents('form');
+        Swal.fire({
+             title: 'Do you want to delete?',
+             text: "You won't be able to revert this!", 
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             cancelButtonText: `Don't delete`,
+             confirmButtonText: 'Yes, Delete it',
+             dangerMode:true,
+         }).then((result) => {
+             if (result.isConfirmed) {
+                  form.submit();
+          
+             }else{
+               Swal.fire('Cancelled','You file is safe','error');
              }
          });
      });

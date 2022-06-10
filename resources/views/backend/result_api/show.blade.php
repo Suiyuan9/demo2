@@ -2,12 +2,7 @@
 
 @section('content')
 
-@if (Session::has('errors'))
-<div class="alert alert-danger">
-  {{ Session::get('errors') }}
-</div>
-  
-@endif
+
     
 
 <div class="content-wrapper" style="margin-left: 0">
@@ -16,7 +11,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1>Show User <span style="font-size:18px;color:#869099">P000005</span></h1>
+            <h1>Show Result Api <span style="font-size:18px;color:#869099">P0000014</span></h1>
           </div>
           
         </div>
@@ -45,7 +40,7 @@
                 <div class="card-header">
                   
                   
-                  <h3 class="card-title">Show User :{{ $user->id }}</h3>
+                  <h3 class="card-title">Show Result Api :{{ $result_api->id }}</h3>
                  
                 </div>
                 <!-- /.card-header -->
@@ -55,39 +50,34 @@
              
                     <div class="form-group">
                       <div class="row  justify-content-between" > 
-                        <div class="col-md-4">
-                        <label >User Name<span>*</span></label>
+                        <div class="col-md-6">
+                        <label >Api URL <span>*</span></label>
                         </div>
-                        <div class="col-md-4">
-                          <label for="exampleInputPassword1">Password</label>
+                        <div class="col-md-6">
+                          <label>Toto Site</label>
                       </div>
                       
-                      <div class="col-md-4">
-                        <label for="password-confirm">Confirm Password</label>
-                    </div>
+                     
                       </div>
                     
                     
                       <!--input-->
                       
-                        <div class="row  mb-3 justify-content-between" >
+                        <div class="row  mb-2 justify-content-between" >
                         
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                           
                             
-                             <input type="name" name="name" class="form-control" id="exampleInputName" value="{{ $user->name }}"   disabled="disabled" style="background-color: white;">
+                             <input  name="api_url" class="form-control"  value="{{ $result_api->api_url }}"   disabled="disabled" style="background-color: white;">
                              
                            </div>
                            
-                           <div class="col-md-4">
-                             <input type="password" name="password" class="form-control "  id="exampleInputPassword1"  value="{{ $user->password }}" style="background-color: white;"  disabled="disabled">
-                            
+                           <div class="col-md-6">
+                             <input  name="toto_site" class="form-control "    value="@foreach($result_api->toto_site as $flag){{ $flag }},@endforeach" style="background-color: white;"  disabled="disabled">
+              
                          </div>
                          
-                         <div class="col-md-4">
-                           <input id="password-confirm" type="password" class="form-control" name="password_confirmation"   style="background-color: white;" value="{{ $user->password }}" disabled="disabled">
-                          
-                       </div>
+                       
                              
     
                             
@@ -98,32 +88,45 @@
                       </div>
                     
                     <!--end input-->
-    
-    
-                   
-    
-                        <!-- image-->
-                        <div class="form-group">
-                          <div class="row " >
-                            <div class="col-md-12">
-                              <label>Image</label>
-                            </div>
-                           </div>
-                        
-    
-                       
-    
-                        
-                          <div class="row " >
-                            <div class="col-md-12">
-                              <img src="../public/images/{{ ($user->image) }}" height="45px" width="50px"></td>
-                            </div>
-                           </div>
+
+                    <div class="form-group">
+                      <div class="row  justify-content-between" > 
+                        <div class="col-md-6">
+                        <label >Status</label>
                         </div>
-               
-    
+                        <div class="col-md-6">
+                      </div>
+                      
+                     
+                      </div>
                     
+                    
+                      <!--input-->
+                      
+                        <div class="row  mb-2 justify-content-between" >
+                        
+                          <div class="col-md-6">
+                          
+                            
+                             <input  name="status" class="form-control"  value="{{ $result_api->status }}"   disabled="disabled" style="background-color: white;">
+                             
+                           </div>
+                           
+                           <div class="col-md-6">
+                            
+                            
+                         </div>
+                         
+                       
+                             
     
+                            
+                           
+                            
+                      
+                        </div>
+                      </div>
+
     
                   </div>
                   <!-- /.card-body -->
@@ -132,7 +135,11 @@
                      <div class="row " >
                       <div class="col-md-11">
                       </div>
-                      <a class="btn  btn-default btn-lg " style="margin-right:1%"   href="{{ route('user.index') }}">Back</a>       
+                      @if(url()->previous()!='http://127.0.0.1:8000/result_api')
+                    <a class="btn  btn-info btn-lg " style="float:right;"   href="{{ url()->previous() }}">Back</a>
+                    @else
+                    <a class="btn  btn-info btn-lg " style="float:right;"   href="{{ route('result_api.index') }}">Back</a>
+                    @endif
                     
                      </div>
                   </div>
