@@ -30,6 +30,7 @@
 <!-- Toastr -->
 <script src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
 <!-- Page specific script -->
+
 <script>
   $(function () {
     //Initialize Select2 Elements

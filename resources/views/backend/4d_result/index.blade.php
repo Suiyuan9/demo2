@@ -61,7 +61,17 @@
     </div>
     </div>
   </section>
-
+  <script type="text/javascript">
+    $(function () {
+  
+  $('#reservationdate').datetimepicker({
+  
+      maxDate:new Date()
+  
+  });
+  
+  });
+    </script>
   @include('backend.footerJS.create')
   
 
