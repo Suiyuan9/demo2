@@ -32,9 +32,15 @@
             </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('result.index') }}" class="nav-link {{ request()->is('result')  ? 'active' : ' '}}" id="link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>4D Result </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('drawdate.index') }}" class="nav-link {{ request()->is('drawdate')  ? 'active' : ' '}}" id="link">
             <i class="far fa-circle nav-icon"></i>
-            <p>Special Drow Date</p>
+            <p>Special Draw Date</p>
           </a>
         </li>
         <li class="nav-item">

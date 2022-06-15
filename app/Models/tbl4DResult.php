@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\tblTotoSite;
 
 class tbl4DResult extends Model
 {
@@ -41,9 +42,24 @@ class tbl4DResult extends Model
         'day',
        
     ];
+    
+    public static $rules=[
+        'type' =>'required|string|max:10',
+        'dd'=>'nullable',
+        'dn'=>'nullable',
+        'day'=>'nullable|string|max:100',
+       
+    ];
 
     public function tblTotoSite()
     {
         return $this->belongsToMany(tblTotoSite::class,'flag');
+    }
+
+    public function site(){
+        return $this->hasOne(tblTotoSite::class, 'flag', 'type');
+    }
+    public function special(){
+        return $this->hasOne(tblSpecial::class, 'drawDate', 'dd');
     }
 }

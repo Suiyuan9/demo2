@@ -39,6 +39,7 @@ Route::resource('result',Result4DController::class);
 
 
 
+
 Route::controller(HomeController::class)->group(function(){
     
     Route::get('/index3','index3')->name('index3');

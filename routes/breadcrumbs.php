@@ -80,7 +80,7 @@ Breadcrumbs::for('totoSite.edit', function (BreadcrumbTrail $trail,tblTotoSite $
 //draw date
 Breadcrumbs::for('drawdate.index', function (BreadcrumbTrail $trail):void {
     $trail->parent('totoSite.index');
-    $trail->push('Drow Date', route('drawdate.index'));
+    $trail->push('Draw Date', route('drawdate.index'));
 });
 
 

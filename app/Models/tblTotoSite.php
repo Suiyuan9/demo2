@@ -32,6 +32,8 @@ class tblTotoSite extends Model
         ];
     }
 
+
+
     public function tblResultApi()
     {
         return $this->belongsTo(tblResultApi::class,'toto_site');
@@ -39,5 +41,8 @@ class tblTotoSite extends Model
     public function tbl4DResult()
     {
         return $this->belongsTo(tbl4DResult::class,'type');
+    }
+    public function site(){
+        return $this->hasOne(tbl4DResult::class, 'type', 'flag');
     }
 }

@@ -42,9 +42,9 @@ return new class extends Migration
             $table->string('c8',4);
             $table->string('c9',4);
             $table->string('c10',4);
-            $table->string('dd');
-            $table->string('dn');
-            $table->string('day');
+            $table->string('dd')->nullable();
+            $table->string('dn')->nullable();
+            $table->string('day')->nullable();
             
             $table->timestamps();
         });

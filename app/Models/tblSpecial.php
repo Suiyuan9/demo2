@@ -11,4 +11,8 @@ class tblSpecial extends Model
     protected $fillable = [
         'drawDate',
     ];
+
+    public function special(){
+        return $this->hasOne(tblSpecial::class, 'dd', 'drawDate');
+    }
 }

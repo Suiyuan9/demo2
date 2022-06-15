@@ -22,17 +22,27 @@ class Result4DController extends Controller
         if($request->filled('dd')){
             $date=$request->dd;
             $mydate=Carbon::createFromFormat('Y-m-d', $date);
+            $day=Carbon::createFromFormat('Y-m-d', $date)->format('l');
             
         }
        else{
         $date=Carbon::now()->format('Y-m-d');
+        $day=Carbon::now()->format('l');
     }
-        $results=tbl4DResult::where('dd',$date)->paginate(9);
-        $site=DB::table('tbl_toto_sites')->rightJoin('tbl4_d_results','tbl4_d_results.type','=','tbl_toto_sites.flag')
-                                         ->select('tbl_toto_sites.*')->first();
-                                         
-        //return $site;
-        return view('backend.4d_result.index',compact('results','date','site'))
+    $nn=Carbon::now()->format('Y-m-d');
+    $now=Carbon::now();
+   
+    $start=Carbon::createFromTimeString('09:00:00')->format('H:i:s');
+    $end = Carbon::createFromTimeString('09:00:00')->addDay()->format('Y-m-d H:i:s');
+    //return $day=='Saturday'||'Sunday'||'Monday' ? 'true':'false';
+    $morning = Carbon::create($date)->createFromTimeString('09:00:00')->addDay()->format(('Y-m-d H:i:s'));
+    //return $nn;
+
+        $results = tbl4DResult::where('dd','<=',$date)->orderBy('dd','desc')->with('site')->get()->unique('type');    
+       // return  $results[0]->site->country; 
+                 //return $totos;           
+        $totoSites=tblTotoSite::latest()->paginate(9);
+        return view('backend.4d_result.index',compact('results','date','totoSites','day','start','now','nn','end'))
             ->with('i', (request()->input('page', 1) - 1) * 9);
     }
 
@@ -54,43 +64,7 @@ class Result4DController extends Controller
      */
     public function store(Request $request)
     {
-        $validator=Validator::make($request->all(),[
-        'type'=>'required',
-        'n1'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'n2'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'n3'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's1'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's2'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's3'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's4'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's5'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's6'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's7'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's8'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's9'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's10'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's11'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's12'=>'required|min:4|max:4|unique:tbl4_d_results',
-        's13'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c1'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c2'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c3'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c4'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c5'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c6'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c7'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c8'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c9'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'c10'=>'required|min:4|max:4|unique:tbl4_d_results',
-        'dd'=>'required|date_format:Y-m-d|max:10',
-
-        ]);
-        if ($validator->fails()) {
-           
-            Alert::error('Error Title', $validator->errors()->all());
-            return back()->withErrors($validator)            
-                         ->withInput();
-         }
+       //return $request->all();
          $result=new tbl4DResult();
          $result->create($request->all());
          return back();
@@ -127,42 +101,7 @@ class Result4DController extends Controller
      */
     public function update(Request $request, tbl4DResult $result)
     {
-        $validator=Validator::make($request->all(),[
-            'type'=>'required',
-            'n1'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'n2'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'n3'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's1'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's2'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's3'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's4'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's5'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's6'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's7'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's8'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's9'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's10'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's11'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's12'=>'required|min:4|max:4|unique:tbl4_d_results',
-            's13'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c1'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c2'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c3'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c4'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c5'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c6'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c7'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c8'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c9'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'c10'=>'required|min:4|max:4|unique:tbl4_d_results',
-            'dd'=>'required|date_format:Y-m-d|max:10',
-        ]);
-        if ($validator->fails()) {
-           
-            Alert::error('Error Title', $validator->errors()->all());
-            return back()->withErrors($validator)            
-                         ->withInput();
-         }
+       
          $result->update($request->all());
          return back();
 
