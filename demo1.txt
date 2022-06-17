@@ -55,3 +55,7 @@ html
         </div>
     </form>
 
+cmmant console
+-php artisan make:command SendEmails
+-signature ->call artisan name
+use curl get accept from http or https data
